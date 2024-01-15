@@ -106,7 +106,7 @@ app.put('/api/entries/:id', async (req, res, next) => {
       throw new ClientError(404, `Entry with id ${entryId} not found`);
     }
     res.status(201).json(entry);
-  } catch (err) {
+  } catch (err){
     next(err);
   }
 });

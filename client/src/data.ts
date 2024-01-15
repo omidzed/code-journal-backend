@@ -22,8 +22,12 @@ if (localData) {
   data = JSON.parse(localData);
 }
 
-export function readEntries(): Entry[] {
-  return data.entries;
+export async function readEntries(): Promise<Entry[]> {
+  const response = await fetch('/api/entries');
+  if (!response.ok) {
+    throw new Error(`fetch Error ${response.status}`);
+  }
+  return await response.json();
 }
 
 export function addEntry(entry: UnsavedEntry): Entry {
